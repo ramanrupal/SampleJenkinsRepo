@@ -1,0 +1,43 @@
+pipeline{
+    agent any
+    stages{
+        stage("Checkout from SCM"){
+            steps{
+                 sh "pwd"
+                 sh "ls -al"
+                 cleanWs()
+                 sh "pwd"
+                 sh "ls -al"
+                 sh "echo 'cloning the code from git'"
+                 git branch: 'main', credentialsId: '3e199b14-095c-432e-9718-a8048473f42f', url: 'https://github.com/ramanrupal/SampleJenkinsRepo.git'
+                sh "ls -al"
+            }
+        }
+
+        stage("In dev env"){
+            steps{
+                sh "echo 'In development enviroment'"
+                sh "git checkout development"
+                sh "cat index.html"
+            }
+        }
+
+        stage("In QA env"){
+            steps{
+                sh "echo IN testing environment"
+                sh "git checkout test "
+                sh "cat index.html"
+            }
+        }
+
+        stage("Request for code merge approval"){
+             input{
+                message "do you want to proceed for production?"
+            }
+            steps{
+              
+            }
+        }
+
+    }
+} 
