@@ -10,7 +10,10 @@ node {
         }
         
    stage('git branch'){
-   sh "git chekout prod"
+   sh "git checkout prod"
    sh "ls -al"
+   sh "git checkout test"
+   sh "ls -al"
+   
    }
 }
