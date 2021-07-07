@@ -10,6 +10,9 @@ node {
         }
         
    stage('git branch'){
+   sh "pwd"
+   sh "cd different_directory"
+   sh "pwd"
    sh "git checkout prod"
    sh "ls -al"
    sh "git checkout test"
