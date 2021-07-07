@@ -5,7 +5,7 @@ pipeline{
             steps{
                 checkout([
             $class: 'GitSCM',
-            branches: scm.branches,
+            branches: main,
             extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
             userRemoteConfigs: [[url: 'http://gsgit.gslab.com/dipti_bagal/jenkins-k8s.git']],
             doGenerateSubmoduleConfigurations: false
