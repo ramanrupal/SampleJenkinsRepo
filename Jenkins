@@ -1,7 +1,7 @@
 node {
    stage('Checkout') {
        checkout([$class: 'GitSCM',
-  branches: [[name: '*/main']],
+  branches: [[name: '*/master']],
   doGenerateSubmoduleConfigurations: false,
   extensions: [[$class: 'RelativeTargetDirectory',
     relativeTargetDir: 'different_directory']],
