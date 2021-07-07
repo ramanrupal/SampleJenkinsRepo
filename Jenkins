@@ -1,10 +1,15 @@
 node {
-    stage('Checkout') {
-        checkout scm
-    }
-
-    stage('Try different branch') {
-        sh "git branch -r"
-        sh "git checkout main"
-    }
+   stage('Checkout') {
+        checkout([
+            $class: 'GitSCM',
+            branches: scm.branches,
+            extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
+            userRemoteConfigs: [[url: 'http://gsgit.gslab.com/dipti_bagal/jenkins-k8s.git']],
+            doGenerateSubmoduleConfigurations: false
+        ])
+        
+   stage('git branch'){
+   sh "git chekout prod"
+   sh "ls -al"
+   }
 }
