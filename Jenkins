@@ -7,6 +7,7 @@ node {
             userRemoteConfigs: [[url: 'http://gsgit.gslab.com/dipti_bagal/jenkins-k8s.git']],
             doGenerateSubmoduleConfigurations: false
         ])
+        }
         
    stage('git branch'){
    sh "git chekout prod"
