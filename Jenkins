@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+    stages{
+        stage('Checkout') {
+            steps{
+                checkout([
+            $class: 'GitSCM',
+            branches: scm.branches,
+            extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
+            userRemoteConfigs: [[url: 'http://gsgit.gslab.com/dipti_bagal/jenkins-k8s.git']],
+            doGenerateSubmoduleConfigurations: false
+        ])
+            }
+        
+    }
+    
+    stage('switch to prod branch'){
+        steps{
+            sh "git chekout prod"
+            sh "ls -al"
+        }
+    }
+    stage('switch to test branch'){
+        steps{
+            sh "git chekout test"
+            sh "ls -al"
+        }
+    }
+    
+    }
+}
