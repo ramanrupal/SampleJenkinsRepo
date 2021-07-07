@@ -1,12 +1,12 @@
 node {
    stage('Checkout') {
-        checkout([
-            $class: 'GitSCM',
-            branches: scm.branches,
-            extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
-            userRemoteConfigs: [[url: 'http://gsgit.gslab.com/dipti_bagal/jenkins-k8s.git']],
-            doGenerateSubmoduleConfigurations: false
-        ])
+       checkout([$class: 'GitSCM',
+  branches: [[name: '*/branch_name']],
+  doGenerateSubmoduleConfigurations: false,
+  extensions: [[$class: 'RelativeTargetDirectory',
+    relativeTargetDir: 'different_directory']],
+  submoduleCfg: [],
+  userRemoteConfigs: [[url: 'http://gsgit.gslab.com/dipti_bagal/jenkins-k8s.git']]])
         }
         
    stage('git branch'){
